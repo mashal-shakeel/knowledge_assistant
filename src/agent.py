@@ -2,7 +2,7 @@ from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
-from models import KnowledgeResponse
+from src.models import KnowledgeResponse
 
 llm = HuggingFaceEndpoint(
     repo_id="meta-llama/Llama-3.1-8B-Instruct",
