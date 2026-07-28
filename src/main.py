@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-
+from agent import ask_question
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
 load_dotenv()
@@ -13,6 +13,25 @@ llm = HuggingFaceEndpoint(
 
 chat = ChatHuggingFace(llm=llm)
 
-response = chat.invoke("what is LangChain?")
+#dummy context for testing
+context = """
+Record ID: KB001
+Title: Annual Leave Policy
+Category: HR
+Source: Employee Handbook
 
-print(response.content)
+Employees receive 20 days of paid annual leave per calendar year.
+Leave requests must be approved by the employee's manager.
+"""
+
+# response = ask_question(
+#     question="How many annual leave days do employees receive?",
+#     context=context,
+# )
+
+response = ask_question(
+    question="What is the company's maternity leave policy?",
+    context=context,
+)
+
+print(response.model_dump_json(indent=4))
