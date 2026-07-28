@@ -3,12 +3,10 @@ from langchain_core.documents import Document
 from langchain_community.vectorstores import Chroma
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-DATA_PATH = "data/knowledge_base.json"
-DB_PATH = "chroma_db"
+from src.config import DATA_PATH, DB_PATH, EMBEDDING_MODEL
 
 embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
+    model_name=EMBEDDING_MODEL
 )
 
 
@@ -20,6 +18,7 @@ def load_documents():
     documents = []
 
     for record in records:
+
         content = f"""
 Record ID: {record['id']}
 Title: {record['title']}
@@ -66,6 +65,7 @@ def create_vector_store():
 
 
 def load_vector_store():
+
     return Chroma(
         persist_directory=DB_PATH,
         embedding_function=embeddings,
@@ -73,6 +73,7 @@ def load_vector_store():
 
 
 def retrieve_records(question: str, k: int = 3):
+
     vector_store = load_vector_store()
 
     return vector_store.similarity_search(
@@ -82,4 +83,8 @@ def retrieve_records(question: str, k: int = 3):
 
 
 def format_context(documents):
-    return "\n\n".join(doc.page_content for doc in documents)
+
+    return "\n\n".join(
+        doc.page_content
+        for doc in documents
+    )

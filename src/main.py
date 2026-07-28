@@ -1,26 +1,15 @@
-from dotenv import load_dotenv
-
 from src.agent import ask_question
-from src.retrieval import (
-    create_vector_store,
-    retrieve_records,
-    format_context,
-)
 
-load_dotenv()
-
-# only running once 
+# only run once
+# from src.retrieval import create_vector_store
 # create_vector_store()
 
-question = "How many annual leave days do employees receive?"
-
-documents = retrieve_records(question)
-
-context = format_context(documents)
+question = "Tell me about KB001"
 
 response = ask_question(
-    question=question,
-    context=context,
+    question
 )
 
-print(response.model_dump_json(indent=4))
+print(
+    response.model_dump_json(indent=4)
+)
