@@ -1,0 +1,182 @@
+[
+  {
+    "id": "KB001",
+    "title": "Annual Leave Policy",
+    "category": "HR",
+    "description": "Full-time employees receive 20 days of paid annual leave per calendar year. Leave requests must be approved by the employee's manager.",
+    "keywords": ["leave", "vacation", "annual leave", "holiday", "pto"],
+    "source": "Employee Handbook",
+    "last_updated": "2026-01-10"
+  },
+  {
+    "id": "KB002",
+    "title": "Remote Work Policy",
+    "category": "HR",
+    "description": "Employees may work remotely up to three days per week with manager approval. Roles requiring on-site presence are exempt.",
+    "keywords": ["remote", "work from home", "hybrid", "office"],
+    "source": "HR Policies",
+    "last_updated": "2026-02-15"
+  },
+  {
+    "id": "KB003",
+    "title": "Password Requirements",
+    "category": "IT Security",
+    "description": "Passwords must contain at least 12 characters including uppercase, lowercase, numbers, and special characters. Passwords expire every 90 days.",
+    "keywords": ["password", "security", "login", "authentication"],
+    "source": "Security Policy",
+    "last_updated": "2026-03-08"
+  },
+  {
+    "id": "KB004",
+    "title": "Multi-Factor Authentication",
+    "category": "IT Security",
+    "description": "Multi-factor authentication is mandatory for all employee accounts and VPN access.",
+    "keywords": ["mfa", "2fa", "authentication", "vpn"],
+    "source": "Security Policy",
+    "last_updated": "2026-03-08"
+  },
+  {
+    "id": "KB005",
+    "title": "Laptop Replacement Policy",
+    "category": "IT",
+    "description": "Company laptops are eligible for replacement every four years or sooner if hardware failure is confirmed by IT.",
+    "keywords": ["laptop", "replacement", "hardware", "device"],
+    "source": "IT Asset Policy",
+    "last_updated": "2026-01-28"
+  },
+  {
+    "id": "KB006",
+    "title": "Software Installation",
+    "category": "IT",
+    "description": "Employees must submit an IT request before installing licensed software on company-managed devices.",
+    "keywords": ["software", "install", "application", "license"],
+    "source": "IT Support Guide",
+    "last_updated": "2026-02-01"
+  },
+  {
+    "id": "KB007",
+    "title": "Expense Reimbursement",
+    "category": "Finance",
+    "description": "Business expenses must be submitted within 30 days of purchase along with valid receipts.",
+    "keywords": ["expense", "reimbursement", "receipt", "finance"],
+    "source": "Finance Handbook",
+    "last_updated": "2026-01-20"
+  },
+  {
+    "id": "KB008",
+    "title": "Travel Policy",
+    "category": "Finance",
+    "description": "Flights and hotels must be booked through the approved corporate travel portal unless an exception is granted.",
+    "keywords": ["travel", "hotel", "flight", "booking"],
+    "source": "Travel Guidelines",
+    "last_updated": "2026-02-10"
+  },
+  {
+    "id": "KB009",
+    "title": "Customer Refund Policy",
+    "category": "Customer Support",
+    "description": "Refunds may be issued within 30 days of purchase for eligible products in accordance with company policy.",
+    "keywords": ["refund", "return", "customer", "purchase"],
+    "source": "Support Handbook",
+    "last_updated": "2026-03-02"
+  },
+  {
+    "id": "KB010",
+    "title": "Ticket Priority Levels",
+    "category": "Customer Support",
+    "description": "Support tickets are classified as Low, Medium, High, or Critical based on business impact and urgency.",
+    "keywords": ["ticket", "priority", "support", "incident"],
+    "source": "Support Operations Manual",
+    "last_updated": "2026-01-18"
+  },
+  {
+    "id": "KB011",
+    "title": "Data Backup Policy",
+    "category": "IT",
+    "description": "Production databases are backed up nightly. Backup retention is maintained for 30 days.",
+    "keywords": ["backup", "database", "restore", "recovery"],
+    "source": "Infrastructure Guide",
+    "last_updated": "2026-03-01"
+  },
+  {
+    "id": "KB012",
+    "title": "VPN Access",
+    "category": "IT",
+    "description": "Employees working remotely must connect through the corporate VPN before accessing internal systems.",
+    "keywords": ["vpn", "remote", "network", "access"],
+    "source": "Network Policy",
+    "last_updated": "2026-02-12"
+  },
+  {
+    "id": "KB013",
+    "title": "Meeting Room Booking",
+    "category": "Facilities",
+    "description": "Meeting rooms should be reserved through the internal booking system. Unused bookings should be cancelled promptly.",
+    "keywords": ["meeting", "room", "booking", "facility"],
+    "source": "Facilities Guide",
+    "last_updated": "2026-01-15"
+  },
+  {
+    "id": "KB014",
+    "title": "Office Access Hours",
+    "category": "Facilities",
+    "description": "Employees may access the office between 6:00 AM and 10:00 PM using their company ID badge.",
+    "keywords": ["office", "building", "access", "badge"],
+    "source": "Facilities Guide",
+    "last_updated": "2026-01-22"
+  },
+  {
+    "id": "KB015",
+    "title": "Code Review Process",
+    "category": "Engineering",
+    "description": "Every pull request requires approval from at least one reviewer before merging into the main branch.",
+    "keywords": ["code review", "pull request", "git", "approval"],
+    "source": "Engineering Handbook",
+    "last_updated": "2026-02-25"
+  },
+  {
+    "id": "KB016",
+    "title": "API Versioning",
+    "category": "Engineering",
+    "description": "Breaking API changes require a new major version while backward-compatible changes increment the minor version.",
+    "keywords": ["api", "version", "semantic versioning", "release"],
+    "source": "API Standards",
+    "last_updated": "2026-03-03"
+  },
+  {
+    "id": "KB017",
+    "title": "Incident Reporting",
+    "category": "Security",
+    "description": "Security incidents must be reported to the security team within one hour of discovery.",
+    "keywords": ["incident", "security", "report", "breach"],
+    "source": "Security Incident Response Plan",
+    "last_updated": "2026-03-05"
+  },
+  {
+    "id": "KB018",
+    "title": "Email Retention Policy",
+    "category": "Compliance",
+    "description": "Business emails are retained for seven years to comply with regulatory requirements.",
+    "keywords": ["email", "retention", "compliance", "archive"],
+    "source": "Compliance Manual",
+    "last_updated": "2026-02-08"
+  },
+  {
+    "id": "KB019",
+    "title": "Onboarding Checklist",
+    "category": "HR",
+    "description": "New employees must complete mandatory training, receive equipment, configure MFA, and acknowledge company policies during onboarding.",
+    "keywords": ["onboarding", "new hire", "training", "orientation"],
+    "source": "HR Onboarding Guide",
+    "last_updated": "2026-01-30"
+  },
+  {
+    "id": "KB020",
+    "title": "Acceptable Use Policy",
+    "category": "Compliance",
+    "description": "Company devices and networks must be used only for authorised business activities. Illegal, malicious, or unauthorised use is prohibited.",
+    "keywords": ["acceptable use", "policy", "device", "network", "compliance"],
+    "source": "Acceptable Use Policy",
+    "last_updated": "2026-02-18"
+  }
+]
