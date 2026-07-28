@@ -1,36 +1,25 @@
 from dotenv import load_dotenv
-from agent import ask_question
-from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+
+from src.agent import ask_question
+from src.retrieval import (
+    create_vector_store,
+    retrieve_records,
+    format_context,
+)
 
 load_dotenv()
 
-llm = HuggingFaceEndpoint(
-    repo_id="meta-llama/Llama-3.1-8B-Instruct",
-    task="conversational",
-    max_new_tokens=256,
-    temperature=0,
-)
+# only running once 
+# create_vector_store()
 
-chat = ChatHuggingFace(llm=llm)
+question = "How many annual leave days do employees receive?"
 
-#dummy context for testing
-context = """
-Record ID: KB001
-Title: Annual Leave Policy
-Category: HR
-Source: Employee Handbook
+documents = retrieve_records(question)
 
-Employees receive 20 days of paid annual leave per calendar year.
-Leave requests must be approved by the employee's manager.
-"""
-
-# response = ask_question(
-#     question="How many annual leave days do employees receive?",
-#     context=context,
-# )
+context = format_context(documents)
 
 response = ask_question(
-    question="What is the company's maternity leave policy?",
+    question=question,
     context=context,
 )
 
