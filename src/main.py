@@ -1,5 +1,10 @@
 from src.agent import ask_question
+import logging
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s - %(message)s",
+)
 # only run once
 # from src.retrieval import create_vector_store
 # create_vector_store()

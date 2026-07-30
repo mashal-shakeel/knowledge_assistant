@@ -88,3 +88,11 @@ def format_context(documents):
         doc.page_content
         for doc in documents
     )
+
+
+def get_retrieved_ids(documents):
+
+    return [
+        document.metadata["id"]
+        for document in documents
+    ]

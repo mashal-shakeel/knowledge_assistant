@@ -18,6 +18,11 @@ from src.tools import (
     retrieve_knowledge,
 )
 
+import logging
+import time
+import uuid
+
+logger = logging.getLogger(__name__)
 
 llm = HuggingFaceEndpoint(
     repo_id=MODEL_NAME,
@@ -27,27 +32,22 @@ llm = HuggingFaceEndpoint(
     huggingfacehub_api_token=HF_TOKEN,
 )
 
-
 chat = ChatHuggingFace(
     llm=llm
 )
-
 
 tools = [
     lookup_record,
     retrieve_knowledge,
 ]
 
-
 llm_with_tools = chat.bind_tools(
     tools
 )
 
-
 parser = PydanticOutputParser(
     pydantic_object=KnowledgeResponse
 )
-
 
 SYSTEM_PROMPT = """
 You are a company knowledge base assistant.
@@ -73,59 +73,105 @@ Return:
 """
 
 
+def log_token_usage(response):
+
+    usage = response.response_metadata.get("token_usage")
+
+    if usage:
+        logger.info(
+            f"Token usage - "
+            f"Prompt: {usage['prompt_tokens']}, "
+            f"Completion: {usage['completion_tokens']}, "
+            f"Total: {usage['total_tokens']}"
+        )
+
+
 def ask_question(question: str):
 
-    messages = [
-        SystemMessage(
-            content=SYSTEM_PROMPT.format(
-                format_instructions=
-                parser.get_format_instructions()
-            )
-        ),
-        HumanMessage(
-            content=question
-        )
-    ]
+    request_id = str(uuid.uuid4())
+    start_time = time.perf_counter()
 
+    logger.info(f"Request ID: {request_id}")
+    logger.info(f"Question: {question}")
 
-    response = llm_with_tools.invoke(messages)
-    print("Tool calls:", response.tool_calls)
+    try:
 
-
-    while response.tool_calls:
-
-        messages.append(response)
-
-
-        for tool_call in response.tool_calls:
-
-            selected_tool = {
-                "lookup_record": lookup_record,
-                "retrieve_knowledge": retrieve_knowledge,
-            }[
-                tool_call["name"]
-            ]
-
-
-            tool_result = selected_tool.invoke(
-                tool_call["args"]
-            )
-
-
-            messages.append(
-                ToolMessage(
-                    content=str(tool_result),
-                    tool_call_id=tool_call["id"]
+        messages = [
+            SystemMessage(
+                content=SYSTEM_PROMPT.format(
+                    format_instructions=
+                    parser.get_format_instructions()
                 )
+            ),
+            HumanMessage(
+                content=question
             )
+        ]
 
+        response = llm_with_tools.invoke(messages)
+        log_token_usage(response)
 
-        # Ask model again after tool result
-        response = llm_with_tools.invoke(
-            messages
+        logger.info(
+            f"Tool calls: {response.tool_calls}"
         )
 
+        while response.tool_calls:
 
-    return parser.parse(
-        response.content
-    )
+            messages.append(response)
+
+            for tool_call in response.tool_calls:
+
+                logger.info(
+                    f"Executing tool: "
+                    f"{tool_call['name']} "
+                    f"with args: {tool_call['args']}"
+                )
+
+                tool_map = {
+                    "lookup_record": lookup_record,
+                    "retrieve_knowledge": retrieve_knowledge,
+                }
+
+                selected_tool = tool_map.get(
+                    tool_call["name"]
+                )
+
+                if selected_tool is None:
+                    raise ValueError(
+                        f"Unknown tool: {tool_call['name']}"
+                    )
+
+                tool_result = selected_tool.invoke(
+                    tool_call["args"]
+                )
+
+                messages.append(
+                    ToolMessage(
+                        content=str(tool_result),
+                        tool_call_id=tool_call["id"]
+                    )
+                )
+
+            response = llm_with_tools.invoke(
+                messages
+            )
+
+            log_token_usage(response)
+
+        elapsed = time.perf_counter() - start_time
+
+        logger.info(
+            f"Execution time: {elapsed:.2f} seconds"
+        )
+
+        return parser.parse(
+            response.content
+        )
+
+    except Exception:
+
+        logger.exception(
+            f"Request {request_id} failed."
+        )
+
+        raise
