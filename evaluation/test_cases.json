@@ -1,0 +1,151 @@
+{
+  "test_cases": [
+    {
+      "id": "TC001",
+      "category": "exact_lookup",
+      "question": "Tell me about KB001",
+      "expected_tool": "lookup_record",
+      "expected_record_id": "KB001",
+      "expected_confidence": 1.0,
+      "expected_needs_review": false,
+      "description": "Exact record lookup by ID"
+    },
+    {
+      "id": "TC002",
+      "category": "exact_lookup",
+      "question": "What is the policy for KB003?",
+      "expected_tool": "lookup_record",
+      "expected_record_id": "KB003",
+      "expected_confidence": 1.0,
+      "expected_needs_review": false,
+      "description": "Exact record lookup with natural language"
+    },
+    {
+      "id": "TC003",
+      "category": "exact_lookup",
+      "question": "Show me KB010 details",
+      "expected_tool": "lookup_record",
+      "expected_record_id": "KB010",
+      "expected_confidence": 1.0,
+      "expected_needs_review": false,
+      "description": "Exact record lookup with different phrasing"
+    },
+    {
+      "id": "TC004",
+      "category": "retrieval",
+      "question": "What is the annual leave policy?",
+      "expected_tool": "retrieve_knowledge",
+      "expected_keywords": ["leave", "vacation", "annual"],
+      "expected_min_confidence": 0.7,
+      "expected_needs_review": false,
+      "description": "General question about HR policy"
+    },
+    {
+      "id": "TC005",
+      "category": "retrieval",
+      "question": "What are the password requirements?",
+      "expected_tool": "retrieve_knowledge",
+      "expected_keywords": ["password", "security", "characters"],
+      "expected_min_confidence": 0.7,
+      "expected_needs_review": false,
+      "description": "General question about IT security"
+    },
+    {
+      "id": "TC006",
+      "category": "retrieval",
+      "question": "How do I get a new laptop?",
+      "expected_tool": "retrieve_knowledge",
+      "expected_keywords": ["laptop", "replacement", "hardware"],
+      "expected_min_confidence": 0.7,
+      "expected_needs_review": false,
+      "description": "General question about IT asset policy"
+    },
+    {
+      "id": "TC007",
+      "category": "comparison",
+      "question": "Compare KB001 and KB002",
+      "expected_tool": "retrieve_knowledge",
+      "expected_matches": ["KB001", "KB002"],
+      "expected_min_confidence": 0.6,
+      "expected_needs_review": false,
+      "description": "Comparison of two records"
+    },
+    {
+      "id": "TC008",
+      "category": "comparison",
+      "question": "What's the difference between remote work and office access policies?",
+      "expected_tool": "retrieve_knowledge",
+      "expected_matches": ["KB002", "KB014"],
+      "expected_min_confidence": 0.6,
+      "expected_needs_review": false,
+      "description": "Comparison of related policies"
+    },
+    {
+      "id": "TC009",
+      "category": "filtering",
+      "question": "Show me all HR policies",
+      "expected_tool": "retrieve_knowledge",
+      "expected_categories": ["HR"],
+      "expected_min_confidence": 0.5,
+      "expected_needs_review": false,
+      "description": "Filter by category"
+    },
+    {
+      "id": "TC010",
+      "category": "filtering",
+      "question": "What IT security policies do we have?",
+      "expected_tool": "retrieve_knowledge",
+      "expected_categories": ["IT Security"],
+      "expected_min_confidence": 0.5,
+      "expected_needs_review": false,
+      "description": "Filter by category with natural language"
+    },
+    {
+      "id": "TC011",
+      "category": "unsupported",
+      "question": "What's the weather like today?",
+      "expected_tool": "retrieve_knowledge",
+      "expected_needs_review": true,
+      "expected_min_confidence": 0.0,
+      "description": "Unsupported request - weather"
+    },
+    {
+      "id": "TC012",
+      "category": "unsupported",
+      "question": "Who is the CEO of the company?",
+      "expected_tool": "retrieve_knowledge",
+      "expected_needs_review": true,
+      "expected_min_confidence": 0.0,
+      "description": "Unsupported request - personal information"
+    },
+    {
+      "id": "TC013",
+      "category": "ambiguity",
+      "question": "Tell me about the policy",
+      "expected_tool": "retrieve_knowledge",
+      "expected_needs_review": false,
+      "expected_min_confidence": 0.3,
+      "description": "Ambiguous question - needs clarification"
+    },
+    {
+      "id": "TC014",
+      "category": "invalid_id",
+      "question": "Tell me about KB999",
+      "expected_tool": "lookup_record",
+      "expected_record_id": null,
+      "expected_needs_review": true,
+      "expected_confidence": 0.0,
+      "description": "Invalid record ID"
+    },
+    {
+      "id": "TC015",
+      "category": "mixed_query",
+      "question": "What does KB005 say about laptop replacement?",
+      "expected_tool": "lookup_record",
+      "expected_record_id": "KB005",
+      "expected_confidence": 1.0,
+      "expected_needs_review": false,
+      "description": "Mixed query with ID and specific question"
+    }
+  ]
+}
